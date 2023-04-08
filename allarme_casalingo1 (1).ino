@@ -2,13 +2,13 @@
 #include <Keypad.h>
 int pirsensor = 0; 
 
-int a=0, b=0, c=0, d=0;  
-int var=0;
-int C1=7, C2=7, C3=2, C4=3; //definizione della password
-char f='*'; //variabile che nasconde i caratteri della password
-int volte=0,sbagliata=0; 
-int possibilita=3;
-int crtl=0;
+int a = 0, b = 0, c = 0, d = 0;  
+int var = 0;
+int C1 = 7, C2 = 7, C3 = 2, C4 = 3; //definizione della password
+char f = '*'; //variabile che nasconde i caratteri della password
+int volte = 0,sbagliata = 0; 
+int possibilita = 3;
+int crtl = 0;
 
 const byte righe = 4; //dichiarazioni variabili per il funzionamento del tastierino numerico
 const byte colonne = 4; 
@@ -73,24 +73,24 @@ void loop()
   {
     lcd.setCursor(6+var, 1); //imposta posizionamento cursore
     lcd.print(key), lcd.setCursor(6+var, 1), lcd.print(f); //lcd.print(key) permette di visualizzare i valori premuti nel tastierino
-    key = key-48; //conversione variabile char key in interi
+    key = key - 48; //conversione variabile char key in interi
     var++;
     
     switch(var) //il sistema legge la password inserita
     {
       case 1:
-      a=key;
+      a = key;
       break;
       case 2:
-      b=key;
+      b = key;
       break;
       case 3:
-      c=key;
+      c = key;
       break;
       case 4:
-      d=key;
+      d = key;
       delay(100);  
-      if(a==C1 && b==C2 && c==C3 && d==C4) //Se la password è corretta
+      if(a == C1 && b == C2 && c == C3 && d == C4) //Se la password è corretta
       {
         lcd.clear();
         lcd.setCursor(4, 0);
@@ -101,7 +101,7 @@ void loop()
         delay(1000); //aspetta 1 secondo
         lcd.clear(); //pulisce lo schermo
         delay(1000); 
-        if(crtl==0){ //se l'allarme è disattivato
+        if(crtl == 0){ //se l'allarme è disattivato
           
           crtl=1;
           lcd.clear();
@@ -110,7 +110,7 @@ void loop()
           delay(2000);
         }
         else{ //se è l'allarme è attivato  
-        crtl=0;
+        crtl = 0;
         lcd.setCursor(4, 0);
         lcd.print("Allarme");
         lcd.setCursor(3, 1);
@@ -133,7 +133,7 @@ void loop()
       
      
       
-      if(a==C1 && b==C2 && c==C3 && d==C4)
+      if(a == C1 && b == C2 && c == C3 && d == C4)
       {
         volte = 0;
         possibilita = 3; 
@@ -141,8 +141,8 @@ void loop()
       }
       else //se la password è sbagliata
       {
-        volte ++; //sistema di sicurezza, max tentativi per indovinare la password: 3
-        possibilita --; 
+        volte++; //sistema di sicurezza, max tentativi per indovinare la password: 3
+        possibilita--; 
         lcd.setCursor(2, 0);
         lcd.print("Hai ancora :");
         lcd.setCursor(13, 0);
@@ -162,7 +162,7 @@ void loop()
           delay(1300);
        lcd.clear();
       }
-      while(volte>=3)//se si sono terminati i tentativi
+      while(volte >= 3)//se si sono terminati i tentativi
       {
         lcd.clear();
         lcd.setCursor(2, 0);
@@ -177,7 +177,7 @@ void loop()
         
       }
      
-      var=0;
+      var = 0;
       lcd.clear();
       
       
@@ -187,7 +187,7 @@ void loop()
   }
  else
  { 
-   if(crtl==1)
+   if(crtl == 1)
    { //se l'allarme è acceso
    pirsensor = digitalRead(5);//rilevazione movimento
   if(pirsensor == HIGH)//se c'è un movimento
