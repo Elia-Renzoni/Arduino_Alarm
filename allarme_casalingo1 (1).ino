@@ -29,35 +29,24 @@ LiquidCrystal lcd (A0, A1, A2, A3, A4, A5); //configura connessione con lo scher
 void setup()
 {
   Serial.begin(9600); //imposta la velocità in bit dei dati al secondo
-
-  
   pinMode(3, OUTPUT); //Configurazioni Pin, in modo che si comportino come INPUT oppure OUTPUT
   pinMode(4, OUTPUT);
   pinMode(5, INPUT);
-  
-  
-  
  lcd.begin(16, 2); //Indica il numero di colonne e di righe
  lcd.setCursor(3, 0); //Imposta cursore dello schermo LCD
  lcd.print("Benvenuto"); //stampa nello schermo le scritte
  lcd.setCursor(1, 1);
  lcd.print("L-C-D Allarme");
  delay(4000); //ritardo in ms
- 
  lcd.clear(); //pulisce lo schermo
  lcd.setCursor(1, 0);
  lcd.print("Allarme spento");
  delay(2000);
  lcd.clear();
-  
-
 }
 
-
 void loop()
- 
-{ 
- 
+{  
   char key = keypad.getKey();//legge in input il valore del tasto cliccato sul tastierino
   if(!key)//se non si sta inserendo la password
   {
@@ -67,15 +56,12 @@ void loop()
     delay(200);
   }
   
- 
-  if(key) //se rileva un input dal tastierino avvia il ciclo per selezionare la password, e per verificarne la corretezza 
-    
+  if(key) //se rileva un input dal tastierino avvia il ciclo per selezionare la password, e per verificarne la corretezza   
   {
     lcd.setCursor(6+var, 1); //imposta posizionamento cursore
     lcd.print(key), lcd.setCursor(6+var, 1), lcd.print(f); //lcd.print(key) permette di visualizzare i valori premuti nel tastierino
     key = key - 48; //conversione variabile char key in interi
     var++;
-    
     switch(var) //il sistema legge la password inserita
     {
       case 1:
@@ -130,14 +116,11 @@ void loop()
         delay(1000);
         
       }
-      
-     
-      
+        
       if(a == C1 && b == C2 && c == C3 && d == C4)
       {
         volte = 0;
         possibilita = 3; 
-        
       }
       else //se la password è sbagliata
       {
@@ -175,12 +158,9 @@ void loop()
         //lcd.clear();
         delay(500);
         
-      }
-     
+      }     
       var = 0;
-      lcd.clear();
-      
-      
+      lcd.clear();   
       break; //esce dal blocco
     }
       
